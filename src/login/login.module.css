@@ -1,0 +1,61 @@
+.container {
+    height: 100vh;
+    background-image: url(../assets/-s-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    /* align-items: center; */
+    position: relative;
+  }
+
+  .loginContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 840px;
+    height: 470px;
+    border-radius: 10px;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .loginLeft {
+    width: 40%;
+    background-image: url(../assets/-s-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .loginRight {
+    width: 60%;
+    /* background-color: yellow; */
+    padding: 24px 32px;
+  }
+
+  .logTit {
+    /* // color: #fff; */
+    color: #1890ff;
+    font-size: 28px;
+    font-weight: bold;
+    /* 大写 */
+    text-transform: uppercase;
+    /* 字间距 */
+    letter-spacing: 10px;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .loginForm {
+    padding-top: 42px;
+  }
+
+  .captchaContent {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .loginForgot {
+    float: right;
+  }

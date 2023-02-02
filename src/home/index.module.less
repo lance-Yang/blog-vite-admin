@@ -1,0 +1,30 @@
+.personal_header {
+  text-align: center;
+  margin: 0 auto;
+}
+.personal_title {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.r1 {
+  -webkit-transform: rotate(-5deg);
+  transform: rotate(5deg);
+}
+.r2 {
+  -webkit-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+.icon_shape {
+  color: red;
+  margin-bottom: 15px;
+  animation: msClock 1.8s linear infinite; 
+}
+
+@keyframes msClock{ 
+  0%,90%,100%{ transform: rotate(0) scale(1);}
+  20%,40%{ transform: rotate(-15deg) scale(1.1);}
+  30%,50%{ transform: rotate(15deg) scale(1.1);}
+}

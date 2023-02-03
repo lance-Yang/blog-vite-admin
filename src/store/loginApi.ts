@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { GET_CAPTCHA, LOGIN } from "../api/api";
-import { baseUrl } from "../api/baseQuery";
+import { baseUrl, InterceptorsResponse } from "../api/baseQuery";
 import { message } from "antd";
 
 // 登录接口
@@ -18,7 +18,7 @@ const loginApi = createApi({
             url: LOGIN,
             params: args,
           };
-        }
+        },
       }),
       // 获取验证码
       getCaptcha: build.query({
@@ -27,14 +27,8 @@ const loginApi = createApi({
         },
         // transformResponse 用来转换响应数据的格式
         transformResponse(res: any) {
-          if (res?.code == 200) {
-            return {
-              ...res.data,
-              captcha_img: `data:image/png;base64,${res?.data?.captcha_img}`,
-            };
-          } else {
-            message.error("请求验证码失败，请重新刷新!");
-          }
+          // console.log(res, "用来转换响应数据的格式....");
+          return InterceptorsResponse(res);
         },
         // keepUnusedDataFor: 60, // 设置数据缓存的时间，单位秒 默认60s
       }),

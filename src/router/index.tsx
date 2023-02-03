@@ -43,16 +43,3 @@ export const routers = [
     ],
   },
 ];
-
-// export const Router = () => useRoutes(routers);
-
-// console.log(Router, "路由信息");
-
-// const AuthRouter = (routes:any,) => {
-//   let routeList = routes || [];
-
-//   routeList.map(item => {
-
-//   })
-
-// }

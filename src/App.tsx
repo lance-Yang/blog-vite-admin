@@ -1,25 +1,18 @@
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
-  Navigate,
   Route,
   Routes,
-  useNavigate,
-  useRoutes,
 } from "react-router-dom";
 import { RouteConfig, routers } from "./router";
 import AuthRoute from "./router/AuthRoute";
 
 const App = () => {
-  const [isLogin, setIsLogin] = useState(false);
-
-  const element = useRoutes(routers);
 
   const loginState = useSelector((state: any) => state.public.loginState);
 
-  console.log(loginState, "loginState...");
-
-  const RouteAuthFun = useCallback(
+  // 处理我们的routers
+  const RouteAuthFun = (
     (routeList: RouteConfig[]) => {
       return routeList.map(
         (item: {
@@ -38,13 +31,13 @@ const App = () => {
               }
               key={item.path}
             >
+              {/* 递归调用，因为可能存在多级的路由 */}
               {item?.children && RouteAuthFun(item.children)}
             </Route>
           );
         }
       );
-    },
-    [loginState]
+    }
   );
   return <Routes>{RouteAuthFun(routers)}</Routes>;
 };

@@ -8,6 +8,7 @@ import loginApi from "./loginApi";
 const persistConfig = {
   key: "root",
   storage,
+  // 配置持久化存在白名单
   whitelist: ["public"],
 };
 
@@ -20,11 +21,6 @@ const sliceReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, sliceReducer);
 
 const store = configureStore({
-  // reducer: {
-  //   [mdApi.reducerPath]: mdApi.reducer,
-  //   [loginApi.reducerPath]: loginApi.reducer,
-  //   ...reducer
-  // },
   reducer: persistedReducer,
   // middleware: (middle) => middle().concat([ loginApi.middleware, homeApi.middleware ])
   middleware: (middle) =>
@@ -35,4 +31,3 @@ const persistor = persistStore(store);
 
 export { store, persistor };
 
-// export default store;

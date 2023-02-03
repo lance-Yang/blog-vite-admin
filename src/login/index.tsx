@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, message, Checkbox } from "antd";
 import {
   UserOutlined,
@@ -17,9 +17,34 @@ const LoginPage: React.FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { data: captcha, refetch: refetchCaptcha } = useGetCaptchaQuery(null);
+  const {
+    // 数据
+    data: captcha,
+    // 刷新方法
+    refetch: refetchCaptcha,
+    // 判断是否出错
+    isError,
+  } = useGetCaptchaQuery(null, {
+    // 响应前对数据进行处理
+    selectFromResult: (res) => {
+      const newRes = { ...res };
+      if (newRes.data?.code == 200) {
+        newRes.data = {
+          ...newRes.data,
+          captcha_img: `data:image/png;base64,${newRes?.data?.data?.captcha_img}`,
+        };
+      }
+      return newRes;
+    },
+  });
 
   const [fetchLogin, { isLoading }] = useLoginMutation();
+
+  useEffect(() => {
+    if (isError) {
+      message.error("后端接口连接异常！");
+    }
+  }, [isError]);
 
   // const handleVerfiCaptcha = (rule: any, value: string, callback: any) => {
   //   if (
@@ -44,6 +69,10 @@ const LoginPage: React.FC<{}> = () => {
         navigate("/home");
       } else {
         message.error(res?.message);
+        // 重新刷新验证码
+        setTimeout(() => {
+          refetchCaptcha();
+        }, 1000);
       }
     } catch (error) {
       console.log(error);

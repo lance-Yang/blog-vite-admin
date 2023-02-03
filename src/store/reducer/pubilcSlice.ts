@@ -28,8 +28,8 @@ const publicSlice = createSlice({
   reducers: {
     // 指定state的各种操作，直接在对象中添加方法
     setMdDocument(state, action) {
-      state.mdDocument.url = action.payload?.url || "";
-      state.mdDocument.content = action.payload?.content || "";
+      state.mdDocument.url = action.payload.url || "";
+      state.mdDocument.content = action.payload.content || "";
     },
     setUserInfo(state, action) {
       state.userInfo = action.payload;

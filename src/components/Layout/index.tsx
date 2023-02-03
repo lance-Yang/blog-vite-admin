@@ -1,17 +1,42 @@
-
 import { Layout, Menu, Typography } from "antd";
-import React, { ReactNode } from "react";
-import { Outlet } from "react-router-dom";
+import React, { ReactNode, useEffect } from "react";
+import {
+  matchRoutes,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 const { Footer, Content, Header } = Layout;
 
 import CustomHeader from "./Header";
 import LayoutRight from "./LayoutRight";
 import SpinLoading from "../Spinner";
+import { routers } from "../../router";
+import { useSelector } from "react-redux";
 // import MenuProps from "./MenuProps";
 
 const { Text } = Typography;
 
 const LayoutPage = ({ children }: { children?: ReactNode }) => {
+  // const location = useLocation();
+  // const token = localStorage.getItem("blogToken") || "";
+  // const navigate = useNavigate();
+
+  // const loginState = useSelector((state: any) => state.public.loginState);
+  // const mathchs = matchRoutes(routers, location);
+
+  // const isExist = mathchs?.some((item) => item.pathname == location.pathname);
+
+  // useEffect(() => {
+  //   if (token && isExist && loginState == "login") {
+  //     if (location.pathname == "/" || location.pathname == "login") {
+  //       navigate("/home");
+  //     } else {
+  //       navigate(location.pathname);
+  //     }
+  //   }
+  // }, [token, location.pathname]);
+
   return (
     <Layout style={{ height: "100vh" }}>
       <div className="layout_header">
